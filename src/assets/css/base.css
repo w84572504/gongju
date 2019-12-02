@@ -1,0 +1,53 @@
+@import url('./mian.css');
+@import url('./iconfont.css');
+:root {
+  --color-text :#1a1a1a;
+  --color-high-text:#ff5777;
+  --color-tint:#ff8198;
+  --color-background:#fff;
+  --font-size:14px;
+  --line-height:1.5;
+  --cube-size: 10px;
+}
+
+*,
+*::before,
+*::after{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans,'微软雅黑', sans-serif;
+  user-select: none; /*禁止用户鼠标选中文字图标*/
+  -webkit-tap-highlight-color: transparent;/* webkit 是苹果浏览器引擎 tap点击 highlight背景高龄 color颜色，颜色用数值调节*/
+  background:var(--color-background);
+  width: 100vw;
+}
+
+a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.clear-fix::after {
+  clear: both;
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+
+.clear-fix {
+  zoom: 1;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
