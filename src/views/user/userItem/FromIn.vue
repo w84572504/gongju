@@ -2,7 +2,7 @@
   <div class="con">
     <van-row type="flex" justify="center">
       <van-col span="22">
-        <h4 class="tit">{{name}}</h4>
+        <h4 class="tit">【入库操作】</h4>
         <van-field v-model="data.sydd" type="text" label="使用地点"  placeholder="请输入地点" required />
         </van-cell-group>
         <van-field v-model="data.scrq" type="text" label="生产日期"  placeholder="请输入生产日期" required @focus ="makerTime('scrq')" readonly="readonly" />
@@ -29,6 +29,7 @@
 
 <script>
   import { ruKu } from "network/user"
+  import { Toast } from 'vant'
   export default {
     name: "FromIn",
     props:{
@@ -62,7 +63,7 @@
       },
       beforeRead(file) {
         if ( this.imgArr.indexOf(file.type) == '-1') {
-          this.$toast.show('上传图片格式不正确!')
+          Toast('上传照片格式不正确!')
           return false;
         }
         return true;
@@ -70,12 +71,28 @@
       submit(){
         this.data.bh = this.ids
         this.data.rkr = this.uid
+        if(this.data.sydd==''){
+          Toast('请输入使用地点')
+          return false
+        }
+        if(this.data.scrq==''){
+          Toast('请选择生产日期')
+          return  false
+        }
+        if(this.data.yxrq==''){
+          Toast('请选择有效日期')
+          return  false
+        }
+        if(this.data.xcjxrq==''){
+          Toast('请选择下次有效日期')
+          return  false
+        }
         ruKu(this.data).then(res=>{
           if (res.status == 1){
             this.$toast.show("入库成功")
             this.$router.replace('/user/tool')
           }else{
-            this.$toast.show(res.msg)
+            Toast(res.msg)
           }
         })
 

@@ -44,7 +44,6 @@
       sendPass(){
         this.password = this.$refs.loginpass.password
         if(this.username==''){
-          console.log(this.username)
           Toast('请输入登录用户名')
           return false
         }
@@ -55,15 +54,14 @@
 
         getLogin(this.username,this.password).then(res=>{
           if (res.status == 1){
-            Toast.success('登录成功')
+            this.$toast.show('登录成功')
             this.alogin(res.data.sign)
             this.uinfo(res.data)
             this.$router.replace('/user/home')
           }else{
-            Toast.fail(res.msg)
+            Toast(res.msg)
           }
         })
-
       }
     },
   }

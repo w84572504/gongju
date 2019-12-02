@@ -2,7 +2,7 @@
   <div class="con">
     <van-row type="flex" justify="center">
       <van-col span="22">
-        <h4 class="tit">{{name}}</h4>
+        <h4 class="tit">【报废操作】</h4>
         <van-field
                 readonly
                 clickable
@@ -37,7 +37,7 @@
 
 <script>
   import { getBadInfo,baoFei } from "network/user";
-
+  import { Toast } from 'vant'
   export default {
     name: "FromTBad",
     props:{
@@ -72,14 +72,21 @@
         })
       },
       submit(){
+        if(this.data.bfyy==''){
+          Toast('请选择报废原因')
+          return false
+        }
+        if(this.data.bfsm==''){
+          Toast('请填写报废说明')
+          return  false
+        }
         this.data.bh = this.ids
         baoFei(this.data).then(res=>{
-          console.log(res);
           if (res.status == 1){
-            this.$toast.show("报废操作成功！")
+            this.$toast.show("报废申请提交成功！")
             this.$router.replace('/user/tool')
           }else{
-            this.$toast.show(res.msg)
+            Toast(res.msg)
           }
         })
       }

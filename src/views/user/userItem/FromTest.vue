@@ -2,7 +2,7 @@
   <div class="con">
     <van-row type="flex" justify="center">
       <van-col span="22">
-        <h4 class="tit">{{name}} 实验</h4>
+        <h4 class="tit">【实验操作】</h4>
         <van-field
                 readonly
                 clickable
@@ -37,7 +37,7 @@
 
 <script>
   import { getTestInfo,shiYan } from "network/user";
-
+  import { Toast } from 'vant'
   export default {
     name: "FromTBad",
     props:{
@@ -72,14 +72,22 @@
         })
       },
       submit(){
+        if(this.data.syxm==''){
+          Toast('请选择实验项目')
+          return false
+        }
+        if(this.data.syms==''){
+          Toast('请填写实验描述')
+          return  false
+        }
         this.data.bh = this.ids
         shiYan(this.data).then(res=>{
           console.log(res);
           if (res.status == 1){
-            this.$toast.show("操作成功！")
+            this.$toast.show("实验操作成功！")
             this.$router.replace('/user/tool')
           }else{
-            this.$toast.show(res.msg)
+            Toast(res.msg)
           }
         })
       }

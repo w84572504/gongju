@@ -2,11 +2,10 @@
   <div>
     <nav-bar>
       <span slot="left" class="iconfont bc-back"> </span>
-      <p slot="mid">{{getUser}}</p>
+      <p slot="mid">{{name}}</p>
       <p slot="right"></p>
     </nav-bar>
-    <h4 class="tit">{{name}}信息</h4>
-    <van-row type="flex" justify="center">
+    <van-row type="flex" justify="center" style="margin-top: 10px;">
       <van-col span="22">
         <van-panel v-for="(v,i) in data" :title="i" :status="v" :key="i">
         </van-panel>

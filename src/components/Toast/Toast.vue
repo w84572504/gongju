@@ -33,12 +33,11 @@
   top:50%;
   left: 50%;
   transform: translate(-50%,-50%);
-  padding: 5px 10px;
+  padding: 8px 15px;
   color: #fff;
   background-color: rgba(0,0,0,.8);
   border-radius: 3px;
   z-index: 99;
-  width: 70%;
   text-align: center;
 }
 .fade-enter-active, .fade-leave-active {

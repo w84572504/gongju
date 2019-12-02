@@ -80,6 +80,8 @@
           if (res.status == 1){
             this.sytotal = res.data.sytotal > 0 ? res.data.sytotal : 0
             this.bftotal = res.data.bftotal > 0 ? res.data.bftotal : 0
+          }else{
+            this.$toast.show('网络连接失败!')
           }
         })
       },

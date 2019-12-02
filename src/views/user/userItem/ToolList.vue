@@ -57,6 +57,7 @@
   import Scroll from "components/scroll/Scroll";
   import upLoding from "components/Loding/upLoding";
   import { getList,getEqu,getType } from "network/user";
+  import { Toast } from 'vant'
   export default {
     name: "ToolList",
     components:{
@@ -71,7 +72,7 @@
         type:0,
         finished:true,
         showPopup:false,
-        desc:"暂未入库，是否入库？",
+        desc:"未入库！请选择操作！",
         btnStatus:0,
         data:{},
         code:"",
@@ -84,6 +85,9 @@
       }
     },
     created(){
+      if (this.$route.query.type != 0 ){
+        this.zt = this.$route.query.type
+      }
       this._getList();
       this._getType();
     },
@@ -167,13 +171,13 @@
             // （status 1：等待入库 2：已入库 3：已报废）
             if (res.data.status == 1){
               this.btnStatus =1;
-              this.desc = "暂未入库，是否入库？";
+              this.desc = "【未入库】请选择操作类型！";
             }else if(res.data.status == 2){
               this.btnStatus =2;
-              this.desc = "已入库，是否操作？";
+              this.desc = "【已入库】请选择操作类型！";
             }else{
               this.btnStatus =3;
-              this.desc = "已报废";
+              this.desc = "【已报废】";
             }
           }else{
             this.$toast.show("暂无数据")

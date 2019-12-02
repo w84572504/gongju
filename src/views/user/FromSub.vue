@@ -20,6 +20,7 @@
   import FromTest from "./userItem/FromTest";
   import { getEqu } from "network/user"
   import { mapGetters } from 'vuex'
+  import { Toast } from 'vant'
   export default {
     name: "FromSub",
     components:{
@@ -49,7 +50,7 @@
           if (res.status == 1){
             this.name = res.data.name
           }else{
-            this.$toast.show("获取信息失败")
+            Toast("获取信息失败")
           }
         })
       }

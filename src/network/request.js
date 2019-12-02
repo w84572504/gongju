@@ -4,7 +4,7 @@ import store from 'store/index'
 import { Toast } from 'vant';
 export function request(config) {
   const instace = axios.create({
-    baseURL : 'http://gqj.tuxiaomi.com/',
+    baseURL : 'https://gqj.hebeidianli.cn/',
     timeout : 5000,
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
