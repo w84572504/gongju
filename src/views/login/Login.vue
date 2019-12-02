@@ -1,39 +1,29 @@
 <template>
-  <div>
-    <nav-bar>
-      <p slot="mid">工器具管理</p>
-    </nav-bar>
-    <div class="login-type">
-<!--      <div class="login-btn" v-for="(v,i) in loginType" :key="i" @click="LoginType(i)" :class="changeA(i)">-->
-<!--        <span>-->
-<!--          {{v}}-->
-<!--        </span>-->
-<!--      </div>-->
-    </div>
+  <div class="login-bg">
+
+    <div class="logo"><img src="~assets/img/title.png"></div>
     <div class="pass">
-      <input type="text" placeholder="请输入账号" key="phone1" v-model="username">
+      <label for="username">
+        <img src="~assets/img/user.png">
+      </label>
+      <input type="text" placeholder="请输入登录账号" key="phone1" v-model="username">
     </div>
       <login-pass ref="loginpass"></login-pass>
-<!--      <login-code v-else ref="logincode" :phone="phone" :type="login_type"></login-code>-->
     <button class="loginBtn" @click="sendPass">立即登录</button>
-<!--    <login-bar>-->
-<!--      <span slot="loginLeft"><router-link to="/login/register">立即注册</router-link></span>-->
-<!--      <span slot="loginRight"><router-link to="/login/editpass">忘记密码</router-link></span>-->
-<!--    </login-bar>-->
   </div>
 </template>
 
 <script>
   import navBar from 'components/navBar/navBar';
   import loginPass from "./LoginItem/loginPass";
-
   import {getLogin} from "network/login"
   import { mapActions } from 'vuex'
+  import { Toast } from 'vant';
   export default {
     name: "Login",
     components:{
       navBar,
-      loginPass,
+      loginPass
     },
     data(){
       return{
@@ -53,19 +43,26 @@
       ]),
       sendPass(){
         this.password = this.$refs.loginpass.password
-        if ( this.password.length >= 6){
-          getLogin(this.username,this.password).then(res=>{
-            if (res.status == 1){
-              this.alogin(res.data.sign)
-              this.uinfo(res.data)
-              this.$router.replace('/user/home')
-            }else{
-              this.$toast.show(res.msg)
-            }
-          })
-        }else{
-          this.$toast.show('密码有误!')
+        if(this.username==''){
+          console.log(this.username)
+          Toast('请输入登录用户名')
+          return false
         }
+        if(this.password==''){
+          Toast('请输入登录密码')
+          return  false
+        }
+
+        getLogin(this.username,this.password).then(res=>{
+          if (res.status == 1){
+            Toast.success('登录成功')
+            this.alogin(res.data.sign)
+            this.uinfo(res.data)
+            this.$router.replace('/user/home')
+          }else{
+            Toast.fail(res.msg)
+          }
+        })
 
       }
     },
@@ -73,12 +70,37 @@
 </script>
 
 <style scoped>
-  .login-type{
-    display: flex;
+  ::-webkit-input-placeholder { /* WebKit browsers */
+    color: #FFFFFF;
+    font-size: 16px;
+  }
+
+  ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #FFFFFF;
+    font-size: 16px;
+  }
+
+  :-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #FFFFFF;
+    font-size: 16px;
+  }
+  .logo{
+    top:50%;
     text-align: center;
-    padding-top: 30px;
-    color: var(--color-text);
-    padding-bottom: 50px;
+    padding: 150px 0 50px 0;
+    color: #FFF;
+      text-align: center;
+      font-size: 28px;
+      font-weight: 800px;
+  }
+.logo img{width: 90%;}
+  .login-bg {
+    background: url('~@/assets/img/login-bg.jpg') no-repeat fixed;
+    color: #ffffff;
+    background-size: 100% 100%;
+    width: 100%;
+    height: 100%;
+    position: fixed;
   }
   .login-btn{
     flex: 1;
@@ -89,23 +111,40 @@
     padding-bottom: 10px;
   }
   .pass{
+    width: 80%;
+    margin: 0 auto;
     padding: 20px;
+    margin-top: 5%;
+    padding: 0 10px;
+    border-radius: 20px;
+    color: #ffffff;
+    background-color: #0bb79e;
+  }
+  .pass label img {
+    width: 25px;
+    position: absolute;
+    margin-top: 5px;
   }
   .pass input{
-    border: none;
-    border-bottom: 1px solid #ddd;
-    width: 100%;
-    padding: 10px 0px;
+    outline: none;
+    border: 0;
+    background-color: transparent;
+    color: #FFF;
+    height: 40px;
+    font-size: 16px;
+    width: 90%;
+    margin-left: 12%;
   }
   .loginBtn{
-    background-color: #2360ec;
+    background-color: #ff7937;
+    color: #FFF;
+    font-size: 18px;
     border:none;
     width: 80%;
     border-radius: 20px;
     height: 40px;
-    color: #fff;
     margin-top: 50px;
-    box-shadow: 0px 0px 5px #2360ec;
+    box-shadow: 0px 0px 5px #ff7937;
     transform: translate(10%,10%);
   }
 </style>

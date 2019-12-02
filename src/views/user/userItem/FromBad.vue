@@ -2,7 +2,7 @@
   <div class="con">
     <van-row type="flex" justify="center">
       <van-col span="22">
-        <h4 class="tit">{{name}} 报废</h4>
+        <h4 class="tit">{{name}}</h4>
         <van-field
                 readonly
                 clickable

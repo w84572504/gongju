@@ -71,4 +71,11 @@ export function editpass(datas) {
   }
   return request(headCode)
 }
+export function getType() {
+  let headCode = {
+    url: 'user/equipment/seclass.html',
+    method: 'post',
+  }
+  return request(headCode)
+}
 

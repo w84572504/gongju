@@ -2,7 +2,7 @@
   <div class="con">
     <van-row type="flex" justify="center">
       <van-col span="22">
-        <h4 class="tit">{{name}} 入库</h4>
+        <h4 class="tit">{{name}}</h4>
         <van-field v-model="data.sydd" type="text" label="使用地点"  placeholder="请输入地点" required />
         </van-cell-group>
         <van-field v-model="data.scrq" type="text" label="生产日期"  placeholder="请输入生产日期" required @focus ="makerTime('scrq')" readonly="readonly" />

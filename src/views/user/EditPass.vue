@@ -5,7 +5,7 @@
       <p slot="mid">修改密码</p>
     </nav-bar>
     <van-row type="flex" justify="center">
-      <van-col span="22">
+      <van-col span="22" style="margin-top: 15px;">
         <van-cell-group>
           <van-field
                   v-model="data.oldpass"

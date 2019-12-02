@@ -2,7 +2,7 @@
   <div>
     <nav-bar>
       <span slot="left" class="iconfont bc-back"> </span>
-      <p slot="mid">{{getUser}}</p>
+      <p slot="mid">{{name}}</p>
       <p slot="right"></p>
     </nav-bar>
     <div>

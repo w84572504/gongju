@@ -2,7 +2,7 @@
   <div>
     <nav-bar>
       <span slot="left" class="iconfont bc-back" @click="closeScan"> </span>
-      <p slot="mid" @click="startScan()">扫描二维码</p>
+      <p slot="mid">扫描二维码</p>
     </nav-bar>
     <div class="scan">
       <div id="bcid">
@@ -38,7 +38,6 @@
         let that = this;
         if (!window.plus) return;
         scan = new plus.barcode.Barcode('bcid');
-
         scan.onmarked = onmarked;
         that.startScan()
         function onmarked(type, result, file) {
@@ -67,6 +66,7 @@
               that.$toast.show(res.msg)
             }
           })
+
         }
       },
       //开始扫描

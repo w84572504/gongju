@@ -10,11 +10,13 @@
 <script>
   import User from "./views/user/User";
   import Loading from "components/Loding/Loding";
+  import Toast from "components/Toast/Toast";
   export default {
     name: 'home',
     components: {
       User,
-      Loading
+      Loading,
+        Toast,
     },
   }
 </script>

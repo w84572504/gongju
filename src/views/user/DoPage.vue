@@ -5,9 +5,12 @@
       <p slot="mid">{{getUser}}</p>
       <p slot="right" @click="goPage">用户中心</p>
     </nav-bar>
-    <van-row type="flex" justify="center">
+    <div>
+      <div class="headerbg"><h2 class="tit">{{getName}}</h2></div>
+    </div>
+    <van-row type="flex" justify="center" class="con">
       <van-col span="22">
-        <h4 class="tit">{{getName}} 操作</h4>
+
         <van-row gutter="20" type="flex" justify="center" class="middle">
           <van-col span="18">
         <div class="gobtn" v-if="status == 1">
@@ -99,10 +102,24 @@
 </script>
 
 <style scoped>
-
+  .headerbg{
+    background: url('~@/assets/img/header-bg.png') no-repeat fixed;
+    color: #ffffff;
+    background-size: 100%;
+    width: 100%;
+    height: 300px;
+    position: fixed;
+  }
+  /*.logo{width: 90%;margin:0 auto; margin-top: 80px;}*/
+  .logo img{width: 100%;}
+  .con{
+    margin-top: 280px;
+    width: 100%;
+    overflow: hidden;
+  }
   .tit{
     text-align: center;
-    line-height: 40px;
+    line-height: 200px;
   }
   .max{
     width: 100%;

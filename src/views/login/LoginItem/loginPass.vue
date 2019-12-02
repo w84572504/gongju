@@ -1,7 +1,10 @@
 <template>
   <div class="pass">
       <div class="inputPass">
-        <input :type="typePass" placeholder="请输入大小写6-16位字母或数字组合"  key="pass1" v-model="password">
+          <label for="password">
+              <img src="~assets/img/password.png" alt="">
+          </label>
+        <input :type="typePass" placeholder="请输入登录密码"  key="pass1" v-model="password">
         <span class="iconfont " :class="getEye" @click="eyeClick"></span>
       </div>
 
@@ -35,16 +38,38 @@
 </script>
 
 <style scoped>
+    ::-webkit-input-placeholder { /* WebKit browsers */
+        color: #FFFFFF;
+        font-size: 16px;
+    }
 
+    ::-moz-placeholder { /* Mozilla Firefox 19+ */
+        color: #FFFFFF;
+        font-size: 16px;
+    }
+
+    :-ms-input-placeholder { /* Internet Explorer 10+ */
+        color: #FFFFFF;
+        font-size: 16px;
+    }
 input{
-  border: none;
-  border-bottom: 1px solid #ddd;
-  width: 100%;
-  padding: 10px 0px;
+    outline: none;
+    border: 0;
+    background-color: transparent;
+    color: #ffffff;
+    height: 40px;
+    font-size: 16px;
+    width: 80%;
+    margin-left: 12%;
 }
   .inputPass{
     position: relative;
   }
+.inputPass label img {
+    width: 25px;
+    position: absolute;
+    margin-top: 5px;
+}
 .inputPass span{
   position: absolute;
   right: 10px;

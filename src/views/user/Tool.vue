@@ -4,7 +4,7 @@
       <span slot="left" class="iconfont bc-back"> </span>
       <p slot="mid">工器具列表</p>
     </nav-bar>
-    <tool-list></tool-list>
+    <tool-list :type = "getType"></tool-list>
   </div>
 </template>
 
@@ -23,11 +23,13 @@
       }
     },
     created(){
-
     },
     methods:{
     },
     computed:{
+      getType(){
+        return  this.$route.query.type
+      }
     }
   }
 </script>
